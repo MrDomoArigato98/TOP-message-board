@@ -1,0 +1,15 @@
+<head>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <h1>
+        <%= title %>
+    </h1>
+    <a href="/new" class="button">Add message</a>
+    <ul>
+        <% messages.forEach((message,index)=> { %>
+            <%- include('messages', {message:message, index:index}) %>
+                <% }) %>
+    </ul>
+</body>
