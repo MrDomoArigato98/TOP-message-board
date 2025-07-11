@@ -40,12 +40,16 @@ app.get("/new", (req, res) => {
 app.post("/new", (req, res) => {
   const message = req.body.message;
   const name = req.body.name;
-  messages.push({ text: message, user: name, added: new Date() });
+  if (message == "" || name == "") {
+    res.redirect("/");
+    console.log("Nothing added");
+  } else {
+    messages.push({ text: message, user: name, added: new Date() });
 
-  console.log(`Added User: ${name} `);
-  console.log(`Message: ${message} `);
-
-  res.redirect("/");
+    console.log(`Added User: ${name} `);
+    console.log(`Message: ${message} `);
+    res.redirect("/");
+  }
 });
 app.listen(PORT, () => {
   console.log(`Listening on ${PORT}`);
