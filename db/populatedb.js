@@ -1,5 +1,6 @@
 const { Client } = require("pg");
 require("dotenv").config();
+const isProduction = process.env.NODE_ENV === "production";
 
 const SQL = `
 CREATE TABLE IF NOT EXISTS messages (
@@ -20,11 +21,8 @@ async function main() {
   console.log("seeding...");
 
   const client = new Client({
-    host: process.env.DATABASE_HOST,
-    database: process.env.DATABASE_NAME,
-    user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    port: process.env.DATABASE_PORT || 5432,
+    connectionString: process.env.DATABASE_URL,
+    ssl: isProduction ? { rejectUnauthorized: false } : undefined,
   });
 
   try {
