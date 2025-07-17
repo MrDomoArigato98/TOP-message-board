@@ -1,5 +1,5 @@
 const { Client } = require("pg");
-require("dotenv").config();
+require("dotenv").config({ path: __dirname + "/../.env" });
 const isProduction = process.env.NODE_ENV === "production";
 
 const SQL = `
@@ -22,7 +22,9 @@ async function main() {
 
   const client = new Client({
     connectionString: process.env.DATABASE_URL,
-    ssl: isProduction ? { rejectUnauthorized: false } : undefined,
+    ssl: {
+      rejectUnauthorized: false,
+    },
   });
 
   try {
