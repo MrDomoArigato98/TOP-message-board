@@ -1,11 +1,15 @@
-const { Pool } = require("pg");
 require("dotenv").config();
+const { Pool } = require("pg");
 
-// Again, this should be read from an environment variable
-module.exports = new Pool({
+const pool = new Pool({
   host: process.env.DATABASE_HOST,
   database: process.env.DATABASE_NAME,
-  username: process.env.DATABASE_USER,
+  user: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,
-  ssl: "require",
+  port: process.env.DATABASE_PORT || 5432,
+  ssl: {
+    rejectUnauthorized: false
+  },
 });
+
+module.exports = pool;
