@@ -3,13 +3,16 @@
 </head>
 
 <body>
+    
     <h1>
         <%= title %>
     </h1>
+    <div class="message-board">
     <a href="/new" class="button">Add message</a>
     <ul>
-        <% messages.forEach((message,index)=> { %>
-            <%- include('messages', {message:message, index:index}) %>
+        <% messages.forEach((message)=> { %>
+            <%- include('messages', {message:message, index:message.id}) %>
                 <% }) %>
     </ul>
+    </div>
 </body>

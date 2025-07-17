@@ -3,13 +3,14 @@
 </head>
 <div class="message-card">
     <h2>
-        <%= message.user %>
+        <%= message.username %>
+        <%- console.log() %>
     </h2>
     <p class="message-added">
-        <%= message.added %>
+        <%= message.posted_at %>
     </p>
     <p class="message-text">
-        <%= message.text %>
+        <%= message.message %>
     </p>
 </div>
 <a href="/" class="button">Back</a>
