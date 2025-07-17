@@ -4,6 +4,7 @@ const { execPath } = require("node:process");
 const app = express();
 const assetsPath = path.join(__dirname, "public");
 const PORT = 3000;
+const { body, validationResult } = require("express-validator");
 
 app.use(express.static(assetsPath));
 app.set("views", path.join(__dirname, "views"));
